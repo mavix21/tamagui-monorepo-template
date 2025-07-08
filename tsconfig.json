@@ -6,7 +6,7 @@
     "allowJs": true,
     "paths": {
       "app/*": ["./packages/app/*"],
-      "@my/ui/*": ["./packages/ui/*"]
+      "@myapp/ui/*": ["./packages/ui/*"]
     }
   },
   "extends": "./tooling/typescript/base.json",

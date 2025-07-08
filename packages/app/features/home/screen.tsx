@@ -1,3 +1,8 @@
+import { useState } from "react";
+import { Platform } from "react-native";
+import { ChevronDown, ChevronUp } from "@tamagui/lucide-icons";
+import { useLink } from "solito/navigation";
+
 import {
   Anchor,
   Button,
@@ -9,21 +14,24 @@ import {
   SwitchThemeButton,
   useToastController,
   XStack,
-  YStack
-} from '@my/ui'
-import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
-import { useState } from 'react'
-import { Platform } from 'react-native'
-import { useLink } from 'solito/navigation'
+  YStack,
+} from "@myapp/ui";
 
 export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
-  const linkTarget = pagesMode ? '/pages-example-user' : '/user'
+  const linkTarget = pagesMode ? "/pages-example-user" : "/user";
   const linkProps = useLink({
     href: `${linkTarget}/nate`,
-  })
+  });
 
   return (
-    <YStack flex={1} justify="center" items="center" gap="$8" p="$4" bg="$background">      
+    <YStack
+      flex={1}
+      justify="center"
+      items="center"
+      gap="$8"
+      p="$4"
+      bg="$background"
+    >
       <XStack
         position="absolute"
         width="100%"
@@ -31,9 +39,9 @@ export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
         gap="$6"
         justify="center"
         flexWrap="wrap"
-        $sm={{ position: 'relative', t: 0 }}
+        $sm={{ position: "relative", t: 0 }}
       >
-        {Platform.OS === 'web' && (
+        {Platform.OS === "web" && (
           <>
             <SwitchRouterButton pagesMode={pagesMode} />
             <SwitchThemeButton />
@@ -59,14 +67,14 @@ export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
 
       <SheetDemo />
     </YStack>
-  )
+  );
 }
 
 function SheetDemo() {
-  const toast = useToastController()
+  const toast = useToastController();
 
-  const [open, setOpen] = useState(false)
-  const [position, setPosition] = useState(0)
+  const [open, setOpen] = useState(false);
+  const [position, setPosition] = useState(0);
 
   return (
     <>
@@ -96,7 +104,11 @@ function SheetDemo() {
         <Sheet.Frame items="center" justify="center" gap="$10" bg="$color2">
           <XStack gap="$2">
             <Paragraph text="center">Made by</Paragraph>
-            <Anchor color="$blue10" href="https://twitter.com/natebirdman" target="_blank">
+            <Anchor
+              color="$blue10"
+              href="https://twitter.com/natebirdman"
+              target="_blank"
+            >
               @natebirdman,
             </Anchor>
             <Anchor
@@ -114,14 +126,14 @@ function SheetDemo() {
             circular
             icon={ChevronDown}
             onPress={() => {
-              setOpen(false)
-              toast.show('Sheet closed!', {
-                message: 'Just showing how toast works...',
-              })
+              setOpen(false);
+              toast.show("Sheet closed!", {
+                message: "Just showing how toast works...",
+              });
             }}
           />
         </Sheet.Frame>
       </Sheet>
     </>
-  )
+  );
 }
