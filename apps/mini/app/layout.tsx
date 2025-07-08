@@ -1,7 +1,6 @@
-import "./theme.css";
-import "@coinbase/onchainkit/styles.css";
 import type { Metadata, Viewport } from "next";
-import "./globals.css";
+import { NextTamaguiProvider } from "app/provider/NextTamaguiProvider";
+
 import { Providers } from "./providers";
 
 export const viewport: Viewport = {
@@ -41,9 +40,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="bg-background">
-        <Providers>{children}</Providers>
+        <NextTamaguiProvider>
+          <Providers>{children}</Providers>
+        </NextTamaguiProvider>
       </body>
     </html>
   );
