@@ -24,7 +24,6 @@
     "noEmit": true,
 
     "importHelpers": true,
-    "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
     "preserveSymlinks": true,
