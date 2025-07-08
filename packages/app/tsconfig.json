@@ -1,13 +1,10 @@
 {
   "extends": "@myapp/tsconfig/base.json",
-  "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
-    "composite": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "app/*": ["./packages/app/*"],
-      "@myapp/ui/*": ["./packages/ui/*"]
-    }
+    "rootDir": ".",
+    "module": "esnext",
+    "allowJs": true
   },
-  "references": []
+  "include": ["."],
+  "exclude": ["node_modules"]
 }
