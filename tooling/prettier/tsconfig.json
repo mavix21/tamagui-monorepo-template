@@ -1,5 +1,10 @@
 {
   "extends": "@myapp/tsconfig/base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "module": "Preserve",
+    "allowJs": true
+  },
   "include": ["."],
   "exclude": ["node_modules"]
 }

@@ -6,6 +6,9 @@
   "sideEffects": [
     "*.css"
   ],
+  "scripts": {
+    "clean": "git clean -xdf .cache .turbo node_modules"
+  },
   "dependencies": {
     "@myapp/ui": "0.0.1",
     "@react-navigation/native": "^6.1.17",
@@ -22,6 +25,7 @@
     "solito": "^4.2.2"
   },
   "devDependencies": {
+    "@myapp/tsconfig": "workspace:*",
     "@types/react": "~19.0.10",
     "@types/react-native": "^0.73.0"
   }

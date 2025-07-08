@@ -3,12 +3,13 @@
     "esModuleInterop": true,
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
+    "allowJs": true,
     "paths": {
       "app/*": ["./packages/app/*"],
       "@my/ui/*": ["./packages/ui/*"]
     }
   },
-  "extends": "./tsconfig.base",
+  "extends": "./tooling/typescript/base.json",
   "exclude": [
     "**/node_modules",
     "**/dist",

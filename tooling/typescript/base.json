@@ -1,26 +1,49 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    /** Base Options */
     "esModuleInterop": true,
     "skipLibCheck": true,
     "target": "ES2022",
-    "lib": ["ES2022"],
-    "allowJs": true,
+    "lib": ["dom", "esnext"],
     "resolveJsonModule": true,
     "moduleDetection": "force",
     "isolatedModules": true,
 
+    /** Keep TSC performant in monorepos */
     "incremental": true,
     "disableSourceOfProjectReferenceRedirect": true,
     "tsBuildInfoFile": "${configDir}/.cache/tsbuildinfo.json",
 
+    /** Strictness */
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "checkJs": true,
 
-    "module": "Preserve",
-    "moduleResolution": "Bundler",
-    "noEmit": true
+    "module": "system",
+    "moduleResolution": "node",
+    "noEmit": true,
+
+    "importHelpers": true,
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
+    "preserveSymlinks": true,
+    "jsx": "react-jsx",
+    "noEmitOnError": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "useUnknownInCatchVariables": false,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "sourceMap": false,
+    "strictNullChecks": true,
+    "types": ["node"]
   },
-  "exclude": ["node_modules", "build", "dist", ".next", ".expo"]
+  "exclude": ["node_modules", "build", "dist", ".next", ".expo", "_"],
+  "typeAcquisition": {
+    "enable": true
+  }
 }

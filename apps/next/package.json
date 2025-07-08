@@ -8,6 +8,7 @@
     "start": "next start",
     "serve": "NODE_ENV=production next start --port 8151",
     "lint": "next lint",
+    "clean": "git clean -xdf .cache .next .turbo node_modules",
     "test": "vitest"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "vercel": "latest"
   },
   "devDependencies": {
+    "@myapp/prettier-config": "workspace:*",
     "@tamagui/next-plugin": "^1.130.8",
     "@types/node": "^24.0.10",
     "eslint-config-next": "^14.2.3",
@@ -31,5 +33,6 @@
     "next-transpile-modules": "^10.0.1",
     "tree-kill": "^1.2.2",
     "vitest": "^2.1.1"
-  }
+  },
+  "prettier": "@myapp/prettier-config"
 }
