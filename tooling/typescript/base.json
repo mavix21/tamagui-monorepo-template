@@ -6,7 +6,6 @@
     "skipLibCheck": true,
     "target": "ES2022",
     "lib": ["dom", "esnext"],
-    "resolveJsonModule": true,
     "moduleDetection": "force",
     "isolatedModules": true,
 
