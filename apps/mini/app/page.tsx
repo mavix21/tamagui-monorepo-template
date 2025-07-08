@@ -1,28 +1,28 @@
 "use client";
 
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
-  useMiniKit,
-  useAddFrame,
-  useOpenUrl,
-} from "@coinbase/onchainkit/minikit";
-import {
-  Name,
-  Identity,
   Address,
   Avatar,
   EthBalance,
+  Identity,
+  Name,
 } from "@coinbase/onchainkit/identity";
+import {
+  useAddFrame,
+  useMiniKit,
+  useOpenUrl,
+} from "@coinbase/onchainkit/minikit";
 import {
   ConnectWallet,
   Wallet,
   WalletDropdown,
   WalletDropdownDisconnect,
 } from "@coinbase/onchainkit/wallet";
-import { useEffect, useMemo, useState, useCallback } from "react";
-import { Button } from "./components/DemoComponents";
-import { Icon } from "./components/DemoComponents";
-import { Home } from "./components/DemoComponents";
-import { Features } from "./components/DemoComponents";
+
+import { Button, Header, YStack } from "@myapp/ui";
+
+import { Features, Home, Icon } from "./components/DemoComponents";
 
 export default function App() {
   const { setFrameReady, isFrameReady, context } = useMiniKit();
@@ -46,13 +46,9 @@ export default function App() {
   const saveFrameButton = useMemo(() => {
     if (context && !context.client.added) {
       return (
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleAddFrame}
-          className="text-[var(--app-accent)] p-4"
-          icon={<Icon name="plus" size="sm" />}
-        >
+        <Button variant="outlined" icon={<Icon name="plus" size="sm" />}>
+          {/* onClick={handleAddFrame} */}
+          {/* className="p-4 text-[var(--app-accent)]" */}
           Save Frame
         </Button>
       );
@@ -60,7 +56,7 @@ export default function App() {
 
     if (frameAdded) {
       return (
-        <div className="flex items-center space-x-1 text-sm font-medium text-[#0052FF] animate-fade-out">
+        <div className="flex animate-fade-out items-center space-x-1 text-sm font-medium text-[#0052FF]">
           <Icon name="check" size="sm" className="text-[#0052FF]" />
           <span>Saved</span>
         </div>
@@ -71,46 +67,58 @@ export default function App() {
   }, [context, frameAdded, handleAddFrame]);
 
   return (
-    <div className="flex flex-col min-h-screen font-sans text-[var(--app-foreground)] mini-app-theme from-[var(--app-background)] to-[var(--app-gray)]">
-      <div className="w-full max-w-md mx-auto px-4 py-3">
-        <header className="flex justify-between items-center mb-3 h-11">
-          <div>
-            <div className="flex items-center space-x-2">
-              <Wallet className="z-10">
-                <ConnectWallet>
-                  <Name className="text-inherit" />
-                </ConnectWallet>
-                <WalletDropdown>
-                  <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
-                    <Avatar />
-                    <Name />
-                    <Address />
-                    <EthBalance />
-                  </Identity>
-                  <WalletDropdownDisconnect />
-                </WalletDropdown>
-              </Wallet>
-            </div>
+    <YStack
+      flex={1}
+      items="center"
+      minH="100vh"
+      px="$4"
+      py="$3"
+      marginInline="auto"
+      width="100%"
+    >
+      <Header
+        mb="$3"
+        justify="space-between"
+        flexDirection="column"
+        items="center"
+        height="$11"
+        className="h-11"
+      >
+        <div>
+          <div className="flex items-center space-x-2">
+            <Wallet className="z-10">
+              <ConnectWallet>
+                <Name className="text-inherit" />
+              </ConnectWallet>
+              <WalletDropdown>
+                <Identity className="px-4 pb-2 pt-3" hasCopyAddressOnClick>
+                  <Avatar />
+                  <Name />
+                  <Address />
+                  <EthBalance />
+                </Identity>
+                <WalletDropdownDisconnect />
+              </WalletDropdown>
+            </Wallet>
           </div>
-          <div>{saveFrameButton}</div>
-        </header>
-
-        <main className="flex-1">
-          {activeTab === "home" && <Home setActiveTab={setActiveTab} />}
-          {activeTab === "features" && <Features setActiveTab={setActiveTab} />}
-        </main>
-
-        <footer className="mt-2 pt-4 flex justify-center">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-[var(--ock-text-foreground-muted)] text-xs"
-            onClick={() => openUrl("https://base.org/builders/minikit")}
-          >
-            Built on Base with MiniKit
-          </Button>
-        </footer>
-      </div>
-    </div>
+        </div>
+        <div>{saveFrameButton}</div>
+      </Header>
+      <main className="flex-1">
+        {activeTab === "home" && <Home setActiveTab={setActiveTab} />}
+        {activeTab === "features" && <Features setActiveTab={setActiveTab} />}
+      </main>
+      <footer className="mt-2 flex justify-center pt-4">
+        <Button
+          variant="outlined"
+          size="$4"
+          className="text-xs text-[var(--ock-text-foreground-muted)]"
+          icon={<Icon name="plus" size="sm" />}
+        >
+          {/* onClick={() => openUrl("https://base.org/builders/minikit")} */}
+          Built on Base with MiniKit
+        </Button>
+      </footer>
+    </YStack>
   );
 }
